@@ -10,7 +10,7 @@ interface StudentStore {
   searchQuery: string;
   fetchStudents: () => void;
   setSearchQuery: (query: string) => void;
-  setPerPage: (perPage: number) => void;
+  setPage: (perPage: number) => void;
 }
 
 const mockStudents: Student[] = [
@@ -24,6 +24,38 @@ const mockStudents: Student[] = [
   },
   {
     id: '2',
+    fullName: 'Дастан Исмаилов',
+    email: 'dastan@example.com',
+    phone: '+996700333444',
+    address: 'г. Ош, ул. Мамбетова 10',
+    image: 'https://via.placeholder.com/100',
+  },
+    {
+    id: '3',
+    fullName: 'Алия Абдуллаева',
+    email: 'aliya@example.com',
+    phone: '+996700111222',
+    address: 'г. Бишкек, ул. Ленина 45',
+    image: 'https://via.placeholder.com/100',
+  },
+  {
+    id: '4',
+    fullName: 'Дастан Исмаилов',
+    email: 'dastan@example.com',
+    phone: '+996700333444',
+    address: 'г. Ош, ул. Мамбетова 10',
+    image: 'https://via.placeholder.com/100',
+  },
+    {
+    id: '5',
+    fullName: 'Алия Абдуллаева',
+    email: 'aliya@example.com',
+    phone: '+996700111222',
+    address: 'г. Бишкек, ул. Ленина 45',
+    image: 'https://via.placeholder.com/100',
+  },
+  {
+    id: '6',
     fullName: 'Дастан Исмаилов',
     email: 'dastan@example.com',
     phone: '+996700333444',
@@ -51,5 +83,5 @@ export const useStudents = create<StudentStore>((set, get) => ({
     );
     set({ searchQuery: query, filtered });
   },
-  setPerPage: (page) => set({ currentPage: page }),
+  setPage: (page) => set({ currentPage: page }),
 }));
