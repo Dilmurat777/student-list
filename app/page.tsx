@@ -18,6 +18,9 @@ export default function HomePage() {
     fetchStudents();
   }, []);
 
+  console.log(filtered);
+  
+
   const totalPages = Math.ceil(filtered.length / perPage);
   const start = (currentPage - 1) * perPage;
   const paginated = filtered.slice(start, start + perPage);

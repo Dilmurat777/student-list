@@ -6,3 +6,5 @@ export interface Student {
   address: string;
   image: string; 
 }
+
+      

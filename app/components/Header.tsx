@@ -3,7 +3,7 @@
 
 import { LogIn, LogOut, ShieldCheck } from "lucide-react";
 import { useAuth } from "../store/useAuth";
-import { cn } from "@/lib/cn";
+import { cn } from "../lib/cn";
 
 export default function Header() {
   const { user, login, logout } = useAuth();
