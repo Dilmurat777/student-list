@@ -1,24 +1,23 @@
-// store/useAuth.ts
 import { create } from "zustand";
-
-type Role = "admin" | "user";
-
-interface User {
-  name: string;
-  role: Role;
-}
+import { login } from "../lib/auth";
 
 interface AuthState {
-  user: User | null;
-  login: () => void;
+  user: any;
+  jwt: string;
+  loginUser: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
 export const useAuth = create<AuthState>((set) => ({
   user: null,
-  login: () =>
-    set({
-      user: { name: "Admin", role: "admin" },
-    }),
-  logout: () => set({ user: null }),
+  jwt: "",
+
+  loginUser: async (email, password) => {
+    const data = await login(email, password);
+    set({ user: data.user, jwt: data.jwt }); // user должен быть полным объектом!
+  },
+
+  logout: () => set({ user: null, jwt: "" }),
 }));
+
+

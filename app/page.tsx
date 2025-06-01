@@ -17,8 +17,6 @@ export default function HomePage() {
   useEffect(() => {
     fetchStudents();
   }, []);
-
-  console.log(filtered);
   
 
   const totalPages = Math.ceil(filtered.length / perPage);

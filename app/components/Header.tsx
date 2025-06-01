@@ -4,37 +4,27 @@
 import { LogIn, LogOut, ShieldCheck } from "lucide-react";
 import { useAuth } from "../store/useAuth";
 import { cn } from "../lib/cn";
+import Link from "next/link";
 
 export default function Header() {
-  const { user, login, logout } = useAuth();
+const { user, loginUser, logout } = useAuth();
 
-  return (
-    <header className="bg-white shadow py-4 mb-6">
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        <h1 className="text-xl font-bold">Student List</h1>
-        <div className="flex items-center gap-4">
-          {user?.role === "admin" && (
-            <button className="text-blue-600 hover:underline flex items-center gap-1">
-              <ShieldCheck size={18} /> Админ-панель
-            </button>
-          )}
-          {user ? (
-            <button
-              className="flex items-center gap-1 text-red-600 hover:underline"
-              onClick={logout}
-            >
-              <LogOut size={18} /> Выйти
-            </button>
-          ) : (
-            <button
-              className="flex items-center gap-1 text-green-600 hover:underline"
-              onClick={login}
-            >
-              <LogIn size={18} /> Войти
-            </button>
-          )}
-        </div>
-      </div>
-    </header>
-  );
+return (
+  <header className="flex justify-between items-center p-4 shadow">
+    <h1 className="text-xl font-bold">Студенты</h1>
+    <div className="flex items-center gap-4">
+      {user ? (
+        <>
+          <span>Привет, {user.username || "Гость"}</span>
+          <button onClick={() => logout()}>Выйти</button>
+          <Link href="/admin">Админ</Link>
+        </>
+      ) : (
+        <button onClick={() => loginUser("admin@site.com", "123456789")}>
+          Войти
+        </button>
+      )}
+    </div>
+  </header>
+);
 }
